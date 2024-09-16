@@ -1,5 +1,11 @@
 package com.modulo1.modulo.Servicio;
 
-public interface IInscripcionesServicio {
+import com.modulo1.modulo.Modelo.Inscripciones;
+import java.util.List;
 
+public interface IInscripcionesServicio {
+    List<Inscripciones> listarInscripciones();
+    Inscripciones obtenerInscripcionPorId(Long id);
+    void guardarInscripcion(Inscripciones inscripcion);
+    void eliminarInscripcion(Long id);
 }
