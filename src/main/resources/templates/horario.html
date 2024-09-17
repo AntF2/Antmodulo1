@@ -4,14 +4,145 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Horarios</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Incluye tu archivo CSS -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2 {
+            color: #343a40;
+            text-align: center;
+            margin: 0.5em 0;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ced4da;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .neon-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .neon-table thead {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .neon-table th,
+        .neon-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .neon-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .neon-table th {
+            font-weight: bold;
+        }
+
+        .action-btn {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .action-btn:hover {
+            text-decoration: underline;
+        }
+
+        .delete {
+            color: #dc3545;
+        }
+
+        .delete:hover {
+            text-decoration: underline;
+        }
+
+        button[type="button"] {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="button"]:hover {
+            background-color: #5a6268;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <h1>Gestión de Horarios</h1>
 
-        <!-- Formulario para agregar o editar un horario -->
         <form th:action="@{/horario/guardarHorario}" th:object="${horario}" method="post">
             <input type="hidden" th:field="*{idHorarios}" />
             <div class="form-group">
@@ -43,8 +174,11 @@
                     <td th:text="${horario.Dias}"></td>
                     <td th:text="${horario.Horas}"></td>
                     <td>
-                        <a class="action-btn" th:href="@{/horario/editar/{idHorarios}(idHorarios=${horario.idHorarios})}">Editar</a> |
-                        <a class="action-btn delete" th:href="@{/horario/delete/{idHorarios}(idHorarios=${horario.idHorarios})}" onclick="return confirm('¿Estás seguro de que quieres eliminar este horario?');">Eliminar</a>
+                        <a class="action-btn"
+                            th:href="@{/horario/editar/{idHorarios}(idHorarios=${horario.idHorarios})}">Editar</a> |
+                        <a class="action-btn delete"
+                            th:href="@{/horario/delete/{idHorarios}(idHorarios=${horario.idHorarios})}"
+                            onclick="return confirm('¿Estás seguro de que quieres eliminar este horario?');">Eliminar</a>
                     </td>
                 </tr>
             </tbody>

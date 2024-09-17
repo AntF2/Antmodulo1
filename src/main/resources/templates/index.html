@@ -3,41 +3,55 @@
 
 <head>
     <title>Portal Escolar</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilos para centrar el contenido */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .container-scroller {
             text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .sidebar {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
         }
 
         .sidebar ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
         }
 
         .sidebar li {
-            margin: 20px 0;
+            margin: 15px 0;
         }
 
         .sidebar a {
             text-decoration: none;
-            font-size: 20px;
+            font-size: 18px;
             color: #fffcfc;
             padding: 10px 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #fff;
             border-radius: 5px;
+            display: block;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .sidebar a:hover {
-            background-color: #f0f0f0;
+            background-color: #ffffff;
+            color: #007bff;
         }
     </style>
 </head>

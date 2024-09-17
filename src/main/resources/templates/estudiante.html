@@ -1,70 +1,213 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Estudiantes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+            color: #333;
+        }
+
+        h1,
+        h2 {
+            color: #212529;
+            text-align: center;
+            font-family: 'Arial Black', sans-serif;
+            margin: 0.5em 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffffff, #f1f1f1);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ced4da;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .neon-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .neon-table thead {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .neon-table th,
+        .neon-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .neon-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .neon-table th {
+            font-weight: bold;
+        }
+
+        .action-btn {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .action-btn:hover {
+            text-decoration: underline;
+        }
+
+        .delete {
+            color: #dc3545;
+        }
+
+        .delete:hover {
+            text-decoration: underline;
+        }
+
+        button[type="button"] {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="button"]:hover {
+            background-color: #5a6268;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Gestión de Estudiantes</h1>
+    <div class="container">
+        <h1>Gestión de Estudiantes</h1>
 
-    <!-- Formulario para agregar o editar un estudiante -->
-    <form th:action="@{/estudiante/guardarEstudiante}" th:object="${estudiante}" method="post">
-        <input type="hidden" th:field="*{idEstudiante}"/>
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" th:field="*{nombre}" required/>
-        </div>
-        <div class="form-group">
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" th:field="*{apellido}" required/>
-        </div>
-        <div class="form-group">
-            <label for="cedula">Cédula:</label>
-            <input type="text" id="cedula" th:field="*{cedula}" required/>
-        </div>
-        <div class="form-group">
-            <label for="correo">Correo:</label>
-            <input type="email" id="correo" th:field="*{correo}" required/>
-        </div>
-        <div class="form-group">
-            <label for="telefono">Teléfono:</label>
-            <input type="text" id="telefono" th:field="*{telefono}" required/>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn">Guardar</button>
-        </div>
-    </form>
+        <form th:action="@{/estudiante/guardarEstudiante}" th:object="${estudiante}" method="post">
+            <input type="hidden" th:field="*{idEstudiante}" />
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" th:field="*{nombre}" required />
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" th:field="*{apellido}" required />
+            </div>
+            <div class="form-group">
+                <label for="cedula">Cédula:</label>
+                <input type="text" id="cedula" th:field="*{cedula}" required />
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" th:field="*{correo}" required />
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" th:field="*{telefono}" required />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn">Guardar</button>
+            </div>
+        </form>
 
-    <h2>Lista de Estudiantes</h2>
-    <table class="neon-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Cédula</th>
-                <th>Correo</th>
-                <th>Teléfono</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="estudiante : ${estudiantes}">
-                <td th:text="${estudiante.idEstudiante}"></td>
-                <td th:text="${estudiante.nombre}"></td>
-                <td th:text="${estudiante.apellido}"></td>
-                <td th:text="${estudiante.cedula}"></td>
-                <td th:text="${estudiante.correo}"></td>
-                <td th:text="${estudiante.telefono}"></td>
-                <td>
-                    <a class="action-btn" th:href="@{/estudiante/editar/{idEstudiante}(idEstudiante=${estudiante.idEstudiante})}">Editar</a> |
-                    <a class="action-btn delete" th:href="@{/estudiante/delete/{idEstudiante}(idEstudiante=${estudiante.idEstudiante})}" onclick="return confirm('¿Estás seguro de que quieres eliminar este estudiante?');">Eliminar</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="/"> 
-        <button type="button">Volver</button>
-    </a>
+        <h2>Lista de Estudiantes</h2>
+        <table class="neon-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Cédula</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="estudiante : ${estudiantes}">
+                    <td th:text="${estudiante.idEstudiante}"></td>
+                    <td th:text="${estudiante.nombre}"></td>
+                    <td th:text="${estudiante.apellido}"></td>
+                    <td th:text="${estudiante.cedula}"></td>
+                    <td th:text="${estudiante.correo}"></td>
+                    <td th:text="${estudiante.telefono}"></td>
+                    <td>
+                        <a class="action-btn"
+                            th:href="@{/estudiante/editar/{idEstudiante}(idEstudiante=${estudiante.idEstudiante})}">Editar</a>
+                        |
+                        <a class="action-btn delete"
+                            th:href="@{/estudiante/delete/{idEstudiante}(idEstudiante=${estudiante.idEstudiante})}"
+                            onclick="return confirm('¿Estás seguro de que quieres eliminar este estudiante?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/">
+            <button type="button">Volver</button>
+        </a>
+    </div>
 </body>
+
 </html>

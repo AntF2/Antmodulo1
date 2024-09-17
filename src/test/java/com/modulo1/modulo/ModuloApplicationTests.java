@@ -1,4 +1,4 @@
-package com.modulo1.modulo;
+package com.Antprogramacion.modulo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
